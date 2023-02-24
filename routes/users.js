@@ -9,6 +9,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async (req,res) => {
   try{
+    req.body.is_online = false
+    req.body.is_admin = false
+    req.body.is_author = false
+    req.body.is_company = false
+    req.body.is_verified = false
+    req.body.verify_code = "acvnewi92emodsqisj129mxskal2121wsaz"
     let user = await User.create(req.body)
     return res.status(201).json({
       success: true,
@@ -19,7 +25,8 @@ router.post('/', async (req,res) => {
     console.log(error)
     return res.status(400).json({
       success: false,
-      message: 'no se pudo crear'
+      message: 'no se pudo crear',
+      body: req.body
     })
   }
 })
