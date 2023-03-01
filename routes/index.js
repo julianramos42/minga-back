@@ -1,5 +1,6 @@
 import express from 'express'
 import userRouter from './users.js'
+import chaptherRouter from './chapthers.js'
 
 let router = express.Router();
 
@@ -9,6 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/users',userRouter)
+router.use('/chapthers', chaptherRouter )
 
 export default router
 
