@@ -31,14 +31,8 @@ const controller = {
                 { is_online: true },
                 { new: true }
             )
-            user.is_admin = null
-            user.is_author = null
-            user.is_company = null
-            user.is_online = null
-            user.is_verified = null
+            
             user.password = null
-            user.verify_code = null
-            user.updatedAt = null
 
             const token = jwt.sign(
                 { id: user._id },
@@ -76,20 +70,20 @@ const controller = {
     token: async (req, res, next) => {
         const { user } = req
 
-        user.is_admin = null
-        user.is_author = null
-        user.is_company = null
-        user.is_online = null
-        user.is_verified = null
         user.password = null
-        user.verify_code = null
-        user.updatedAt = null
         
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.SECRET,
+            { expiresIn: 60*60*24 }
+        )
+
         try {
         return res.status(200).json({
             success: true,
             message: 'User logged in',
-            user
+            user,
+            token
         })
         } catch (error) {
         next(error)

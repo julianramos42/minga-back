@@ -15,7 +15,11 @@ async function accountExistsSignIn(req,res,next){
         }
         return next()
     }
-    return res.status(400).json('User not found')
+    return res.status(400).json({
+        success: false,
+        message: 'User not found',
+        user
+    })
 }
 
 export default accountExistsSignIn
