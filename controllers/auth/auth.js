@@ -14,7 +14,7 @@ const controller = {
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
         try {
             await User.create(req.body)
-            return res.status(200).send('user registered!')
+            return res.status(200).json('user registered!')
         } catch (error) {
             next(error)
         }
