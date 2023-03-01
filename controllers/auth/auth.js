@@ -14,7 +14,11 @@ const controller = {
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
         try {
             await User.create(req.body)
-            return res.status(200).json('user registered!')
+            return res.status(200).json({
+                success: true,
+                message: 'User registered',
+                data: req.body
+            })
         } catch (error) {
             next(error)
         }
@@ -41,7 +45,12 @@ const controller = {
                 process.env.SECRET,
                 { expiresIn: 60*60*24 }
             )
-            return res.status(200).json({user, token})
+            return res.status(200).json({
+                succes: true,
+                message: 'User logged in',
+                user,
+                token
+            })
         } catch (err) {
             next(err)
         }
@@ -55,7 +64,10 @@ const controller = {
                 { is_online: false },
                 { new: true }
             )
-            return res.status(200).json('offline user!')
+            return res.status(200).json({
+                success: true,
+                message: 'offline user!'
+            })
         } catch (err) {
             next(err)
         }
@@ -74,7 +86,11 @@ const controller = {
         user.updatedAt = null
         
         try {
-        return res.status(200).json(user)
+        return res.status(200).json({
+            success: true,
+            message: 'User logged in',
+            user
+        })
         } catch (error) {
         next(error)
         }
