@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.use('/users',userRouter)
 router.use('/chapthers', chaptherRouter )
+router.use('/auth',userRouter)
 
 export default router
 
