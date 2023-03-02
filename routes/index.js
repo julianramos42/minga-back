@@ -1,5 +1,6 @@
 import express from 'express'
 import userRouter from './users.js'
+//import mangaRouter from './mangas.js'
 
 let router = express.Router();
 
@@ -9,6 +10,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/users',userRouter)
-
+//router.use('/mangas',mangaRouter)
 export default router
 
