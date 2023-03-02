@@ -1,34 +1,21 @@
 import express from 'express'
-import User from '../models/User.js'
-var router = express.Router();
+import controller from '../controllers/auth/auth.js'
+import validator from '../middlewares/validator.js'
+import schemaSignUp from '../schemas/usersSignUp.js'
+import schemaSignIn from '../schemas/usersSignIn.js'
+import accountExistsSignUp from '../middlewares/accountExistsSignUp.js'
+import accountExistsSignIn from '../middlewares/accountExistsSignIn.js'
+import accountHasBeenVerified from '../middlewares/accountHasBeenVerified.js'
+import passwordIsOk from '../middlewares/passwordIsOk.js'
+import passport from '../middlewares/passport.js'
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('aca tendrian que estar los usuarios');
-});
+const { sign_up,sign_in,sign_out,token } = controller
 
-router.post('/', async (req,res) => {
-  try{
-    req.body.is_online = false
-    req.body.is_admin = false
-    req.body.is_author = false
-    req.body.is_company = false
-    req.body.is_verified = false
-    req.body.verify_code = "acvnewi92emodsqisj129mxskal2121wsaz"
-    let user = await User.create(req.body)
-    return res.status(201).json({
-      success: true,
-      user: user,
-      id: user._id
-    })
-  } catch(error){
-    console.log(error)
-    return res.status(400).json({
-      success: false,
-      message: 'no se pudo crear',
-      body: req.body
-    })
-  }
-})
+let router = express.Router();
+
+router.post('/signup', validator(schemaSignUp), accountExistsSignUp, sign_up)
+router.post('/signin', validator(schemaSignIn), accountExistsSignIn, accountHasBeenVerified, passwordIsOk,sign_in)
+router.post('/token', passport.authenticate('jwt', {session:false}), token)
+router.post('/signout', passport.authenticate('jwt', {session:false}), sign_out)
 
 export default router
