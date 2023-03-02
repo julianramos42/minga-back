@@ -18,14 +18,14 @@ router.post("/", validator(mangaCreate),
       let manga = await Manga.create(req.body);
       return res.status(201).json({
         success: true,
-        message: "Se pudo crear New Manga",
+        message: "A new Manga could be created",
 
       });
     } catch (err) {
       console.log(err);
       return res.status(400).json({
         success: false,
-        message: "No se pudo crear New Manga",
+        message: "Could not create a new Manga",
       });
     }
   });
