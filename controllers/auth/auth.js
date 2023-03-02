@@ -63,7 +63,6 @@ const controller = {
             return res.status(200).json({
                 success: true,
                 message: 'offline user!',
-                user
             })
         } catch (err) {
             next(err)
