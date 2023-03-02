@@ -52,15 +52,18 @@ const controller = {
 
     sign_out: async (req, res, next) => {
         const { mail } = req.user
+        const { user } = req
         try {
             await User.findOneAndUpdate(
                 { mail },
                 { is_online: false },
                 { new: true }
             )
+            user.password = null
             return res.status(200).json({
                 success: true,
-                message: 'offline user!'
+                message: 'offline user!',
+                user
             })
         } catch (err) {
             next(err)
