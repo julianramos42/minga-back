@@ -6,6 +6,7 @@ import validator from '../middlewares/chapthers/validator.js'
 import nextOrder from '../middlewares/chapthers/next_order.js'
 import addFrontPhoto from '../middlewares/chapthers/add_front_photo.js'
 import existsOrder from '../middlewares/chapthers/exists_order.js'
+import passport from '../middlewares/chapthers/passport.js'
 
 const {create} = create_chapther
 const {read_all} = read_all_chapther
@@ -13,6 +14,6 @@ let router = express.Router();
 
 router.get('/', read_all);
 
-router.post('/', /* middle para autenticar el usuario,*/validator(chaptherSchemas),existsOrder,nextOrder,addFrontPhoto,create)
+router.post('/', passport.authenticate('jwt',{session:false}),validator(chaptherSchemas),existsOrder,nextOrder,addFrontPhoto,create)
 
 export default router
