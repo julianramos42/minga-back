@@ -1,30 +1,18 @@
 import express from 'express'
-import Chapther from '../models/Chapther.js';
+import create_chapther from '../controllers/chapters/create.js'
+import read_all_chapther from '../controllers/chapters/read_all.js'
+import chaptherSchemas from '../schemas/chapthers.js'
+import validator from '../middlewares/chapthers/validator.js'
+import nextOrder from '../middlewares/chapthers/next_order.js'
+import addFrontPhoto from '../middlewares/chapthers/add_front_photo.js'
+import existsOrder from '../middlewares/chapthers/exists_order.js'
 
+const {create} = create_chapther
+const {read_all} = read_all_chapther
 let router = express.Router();
 
-router.get('/', function (req, res, next) {
-    res.send('aca tendrian que estar los capitulos');
-});
+router.get('/', read_all);
 
-router.post('/', async (req, res) => {
-    try { 
-  
-        let chapther = await Chapther.create(req.body)
-        return res.status(201).json({
-            success: true,
-            chapther: chapther,
-            id: chapther._id
-    
-        })
-    } catch (error) {
-        console.log(error)
-        return res.status(400).json({
-            success: false,
-            message: 'no se pudo crear',
-            body: req.body
-        })
-    }
-})
+router.post('/', /* middle para autenticar el usuario,*/validator(chaptherSchemas),existsOrder,nextOrder,addFrontPhoto,create)
 
 export default router
