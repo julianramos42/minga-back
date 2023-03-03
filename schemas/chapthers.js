@@ -21,9 +21,9 @@ const schema = Joi.object({
             'string.empty': 'the pages cannot be empty'
         }),
     manga_id: Joi
-    .string()
-    .required(),
-    
+        .string()
+        .required(),
+
 })
 
 export default schema
