@@ -1,5 +1,6 @@
 import express from 'express'
 import userRouter from './users.js'
+import authorRouter from './authors.js'
 
 let router = express.Router();
 
@@ -9,6 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/auth',userRouter)
+router.use('/author-form',authorRouter)
 
 export default router
 
