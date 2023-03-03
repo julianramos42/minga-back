@@ -65,13 +65,7 @@ const schema = Joi.object({
                 'any.required': 'A photo is required',
                 'string.uri': 'A valid URL is necessary'
             }
-        ),
-    user_id: Joi
-            .objectId()
-            .required(),
-    // active: Joi
-    //         .boolean()
-    //         .required()
+        )
 })
 
 export default schema

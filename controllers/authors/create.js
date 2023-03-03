@@ -3,6 +3,8 @@ import Author from '../../models/Author.js'
 const controller = {
     create: async(req,res,next) => {
         // req.body.user_id = "6400e1c1de3abf200587e13c"
+        const { user } = req
+        req.body.user_id = user._id
         req.body.active = true
         try{
             await Author.create(req.body)
