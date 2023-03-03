@@ -3,7 +3,9 @@ import Chapther from "../../models/Chapther.js"
 const controller = {
     create: async (req, res) => {
         try {
-            req.body.order = Number(req.body.order)
+
+                req.body.order = Number(req.body.order)
+       
             let chapther = await Chapther.create(req.body)
             return res.status(201).json({
                 success: true,
