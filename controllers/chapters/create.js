@@ -7,9 +7,8 @@ const controller = {
             let chapther = await Chapther.create(req.body)
             return res.status(201).json({
                 success: true,
-                chapther: chapther,
                 id: chapther._id,
-                data: req.user
+                order: req.body.order
 
             })
         } catch (error) {

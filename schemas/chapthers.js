@@ -24,11 +24,6 @@ const schema = Joi.object({
     .string()
     .required(),
     
-    cover_photo: Joi
-    .string(),
-    
-    timestamps: Joi
-    .string(),
 })
 
 export default schema
