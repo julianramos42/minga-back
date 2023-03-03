@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/auth',userRouter)
-router.use('/author-form',authorRouter)
+router.use('/authors',authorRouter)
 
 export default router
 
