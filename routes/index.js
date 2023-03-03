@@ -1,5 +1,6 @@
 import express from 'express'
 import userRouter from './users.js'
+import chaptherRouter from './chapthers.js'
 import authorRouter from './authors.js'
 
 let router = express.Router();
@@ -9,6 +10,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.use('/chapthers', chaptherRouter )
 router.use('/auth',userRouter)
 router.use('/authors',authorRouter)
 
