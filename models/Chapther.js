@@ -5,7 +5,7 @@ let schema = new mongoose.Schema({
     title: { type: String, required: true },
     cover_photo: { type: String, required: true },
     pages: [{ type: String, required: true }],
-    order: { type: Number },
+    order: { type: Number , required: false},
     
 
 }, {
