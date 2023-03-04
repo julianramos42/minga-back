@@ -1,5 +1,6 @@
-import 'dotenv/config.js'
 import express from 'express'
+import 'dotenv/config.js'
+import './config/database.js' //requiero la configuracion de la db
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
@@ -7,7 +8,6 @@ import { __dirname } from './utils.js'
 import indexRouter from './routes/index.js'
 import mangaRouter from './routes/mangas.js'
 import cors from 'cors'
-import './config/database.js' //requiero la configuracion de la db
 
 let app = express();
 

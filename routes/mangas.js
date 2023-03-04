@@ -1,16 +1,15 @@
-import express from "express";
-import mangas from "../schemas/mangas.js";
-import validator from "../middleware/validator.js"
-import controller from '../controllers/mangas/create.js'
-import exists_title from '../middleware/mangas/exists_title.js'
-const {create} = controller
+import express from 'express'
+import mangaSchema from '../schemas/mangas.js'
+import validator from '../middlewares/validator.js'
+import mangaCreate from '../controllers/mangas/create.js'
+import exist_title from '../middlewares/mangas/exists_title.js'
+import is_active from '../middlewares/authors/is_active.js'
+import passport from '../middlewares/passport.js'
 
-let router = express.Router();
+let router = express.Router()
+const { create } = mangaCreate
 
-/* GET users listing. */
-router.get("/",function (req, res, next) {
-  res.status(200).send("New Manga");
-});
-router.post("/",validator(mangas), exists_title ,create);
 
-export default router;
+router.post("/", passport.authenticate('jwt',{session:false}) ,validator(mangaSchema),exist_title, create);
+
+export default router
