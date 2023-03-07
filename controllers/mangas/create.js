@@ -1,7 +1,7 @@
 import Manga from '../../models/Manga.js'
 
 const controller = {
-    create : async (req, res) => { //create es el modelo
+    create : async (req, res) => { 
         try {
           
           let manga = await Manga.create(req.body);
