@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import { __dirname } from './utils.js'
 import indexRouter from './routes/index.js'
-import mangaRouter from './routes/mangas.js'
 import cors from 'cors'
 
 let app = express();
@@ -23,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 app.use('/', indexRouter);
-app.use("/mangas",mangaRouter);
 
 function errorNotFound(req, res, next){
     next(createError(404, 'La ruta no existe'))
