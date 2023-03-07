@@ -5,16 +5,18 @@ async function is_active(req,res,next){
     if(author){
         if(author.active){
             next()
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: 'Author is not active'
+            })
         }
+    } else {
         return res.status(400).json({
             success: false,
-            message: 'Author is not active'
+            message: 'No authors founded'
         })
     }
-    return res.status(400).json({
-        success: false,
-        message: 'No authors founded'
-    })
 }
 
 export default is_active
