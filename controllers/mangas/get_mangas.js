@@ -13,7 +13,7 @@ const controller = {
             pagination.limit = 10
         }
         if(req.query.category){
-            query.category_id = req.query.category
+            query.category_id = req.query.category.split(',')
             pagination.limit = 10
         }
 
