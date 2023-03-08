@@ -6,7 +6,6 @@ import allController from '../controllers/category/all.js'
 import exist_title from '../middlewares/mangas/exists_title.js'
 import is_active from '../middlewares/authors/is_active.js'
 import passport from '../middlewares/passport.js'
-// import jwtmiddleware from '../middlewares/jwtmiddleware.js'
 // import finds_id from '../middlewares/auth/finds_id.js'
 
 let router = express.Router()
