@@ -1,5 +1,4 @@
-//import Manga from '../../models/Manga.js'
-import User from "../../models/User.js"
+import Manga from '../../models/Manga.js'
 
 const controller = {
     read: async (req, res) => { 
@@ -14,16 +13,14 @@ const controller = {
             pagination.limit = 10
         }
         if(req.query.category){
-            query.category = req.query.category
+            query.category_id = req.query.category
             pagination.limit = 10
         }
-        if(req.query.name){ query.name = new RegExp(req.query.name,'i'); pagination.limit=10 }
-        if(req.query.mail){ query.mail = req.query.mail }
-        //let mangas = await Manga.find()
-        let users = await User.find(query)
-            .select("name -_id")
-            //.sort({ title: 1 })
-            .sort({ name: 1 })
+
+        let mangas = await Manga.find(query)
+            .select("title category_id cover_photo -_id")
+            .populate("category_id", "name -_id")
+            .sort({ title: 1 })
             .skip( pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0 )
             .limit( pagination.limit > 0 ? pagination.limit : 0 )
 
@@ -32,7 +29,7 @@ const controller = {
             .json({
                 success: true,
                 message: 'aca deberias ver todos los capitulos',
-                users
+                mangas
             })
     }
 }
