@@ -7,10 +7,12 @@ import is_active from '../middlewares/authors/is_active.js'
 import passport from '../middlewares/passport.js'
 import getMangaController from '../controllers/mangas/get_mangas.js'
 // import finds_id from '../middlewares/auth/finds_id.js'
+import get_One from '../controllers/mangas/get_one.js'
 
 let router = express.Router()
 const { create } = mangaCreate
 const { read } = getMangaController
+const { getOne } = get_One
 
 
 router.post(
@@ -23,5 +25,6 @@ router.post(
 );
 
 router.get('/', passport.authenticate('jwt', {session:false}), read)
+router.get('/:id',getOne)
 
 export default router
