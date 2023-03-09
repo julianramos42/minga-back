@@ -2,16 +2,18 @@ import express from 'express'
 import mangaSchema from '../schemas/mangas.js'
 import validator from '../middlewares/validator.js'
 import mangaCreate from '../controllers/mangas/create.js'
-import allController from '../controllers/category/all.js'
 import exist_title from '../middlewares/mangas/exists_title.js'
 import is_active from '../middlewares/authors/is_active.js'
 import passport from '../middlewares/passport.js'
 // import jwtmiddleware from '../middlewares/jwtmiddleware.js'
+import getMangaController from '../controllers/mangas/get_mangas.js'
 // import finds_id from '../middlewares/auth/finds_id.js'
+import get_One from '../controllers/mangas/get_one.js'
 
 let router = express.Router()
 const { create } = mangaCreate
-const { all } = allController
+const { read } = getMangaController
+const { getOne } = get_One
 
 
 router.post(
@@ -22,6 +24,8 @@ router.post(
   validator(mangaSchema),
   create
 );
-router.get('/', all)
+
+router.get('/', passport.authenticate('jwt', {session:false}), read)
+router.get('/:id',getOne)
 
 export default router

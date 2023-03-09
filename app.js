@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
 
 function errorNotFound(req, res, next){
     next(createError(404, 'La ruta no existe'))
