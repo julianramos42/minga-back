@@ -11,7 +11,7 @@ const controller = {
 
         let pagination = { page: 1, limit: 6 }
         if(req.query.page){ pagination.page = req.query.page }
-        if (req.query.quantity){ pagination.limit = req.query.quantity }
+        // if (req.query.quantity){ pagination.limit = req.query.quantity }
 
         let query = {}
         if(req.query.title){

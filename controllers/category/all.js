@@ -5,8 +5,7 @@ const all = {
         async (req, res, next) => {
             try {
                 let all = await category.find()
-                if (all) {
- 
+                if (all.length) {
                     return res.status(200).json({
                         success: true,
                         message: "All categories",
