@@ -1,17 +1,28 @@
 import Manga from '../../models/Manga.js'
 
 
-const controller ={
+const controller = {
 
-getOne: async (req,res,next)=> {
-    try{
-        const manga = await Manga.find().select('name')
-        return res.status(200),json( {mangas: all})
-    } catch(err){
-        next(err)
+    getOne: async (req, res) => {
+
+        const manga = await Manga.findOne({ _id: req.params.id }).select('title description -_id')
+
+        if (manga) {
+            return res
+                .status(200)
+                .json({
+                    category: manga
+                })
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: "This manga dont exist already!",
+            });
+        }
+
     }
 }
 
-}
+
 
 export default controller
