@@ -1,10 +1,10 @@
-import category from '../../models/Category.js'
+import {Category} from '../../models/Category.js'
 
 const all = {
     all:
         async (req, res, next) => {
             try {
-                let all = await category.find()
+                let all = await Category.find()
                 if (all.length) {
                     return res.status(200).json({
                         success: true,
