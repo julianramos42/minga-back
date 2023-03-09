@@ -3,7 +3,7 @@ import Chapther from '../../models/Chapther.js'
 
 const controller = {
     get_chapther: async (req, res, next) => {
-        let chapthers = {} // cuando el usuario no realice ningun registro, van a aparecer todos los capitulos
+        let chapthers = {} 
         let pagination = { //configuracion de la pagina 
             page: 1,
             limit: 4,
