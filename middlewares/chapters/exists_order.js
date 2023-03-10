@@ -1,13 +1,13 @@
-import Chapther from "../../models/Chapther.js";
+import {Chapter} from "../../models/Chapter.js";
 
 async function existsOrder(req, res, next) {
    if (req.body.order) {
-      const chapther = await Chapther.findOne({ manga_id: req.body.manga_id, order: req.body.order })
+      const chapter = await Chapter.findOne({ manga_id: req.body.manga_id, order: req.body.order })
 
-      if (chapther) {
+      if (chapter) {
          return res.status(400).json({
             success: false,
-            message: 'chapther cannot by create',
+            message: 'chapter cannot by create',
            
         })
       }
