@@ -18,10 +18,12 @@ const controller = {
         let query = {}
         if(req.query.title){
             query.title = new RegExp(req.query.title.trim(),'i')
+            pagination.limit = 10
             skip = 0
         }
         if(req.query.category){
             query.category_id = req.query.category.split(',')
+            pagination.limit = 10
         }
 
         let mangas = await Manga.find(query)
