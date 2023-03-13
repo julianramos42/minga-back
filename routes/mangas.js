@@ -8,11 +8,13 @@ import passport from '../middlewares/passport.js'
 import getMangaController from '../controllers/mangas/get_mangas.js'
 // import finds_id from '../middlewares/auth/finds_id.js'
 import get_One from '../controllers/mangas/get_one.js'
+import mangasFromAuthor from '../controllers/mangas/get_mangas_from_author.js'
 
 let router = express.Router()
 const { create } = mangaCreate
 const { read } = getMangaController
 const { getOne } = get_One
+const { read_mangas_from_author } = mangasFromAuthor
 
 
 router.post(
@@ -26,5 +28,6 @@ router.post(
 
 router.get('/', passport.authenticate('jwt', {session:false}), read)
 router.get('/:id',getOne)
+router.get('/authors/:author_id', read_mangas_from_author)
 
 export default router
