@@ -26,6 +26,7 @@ router.post(
 );
 
 router.get('/', passport.authenticate('jwt', {session:false}), read)
-router.get('/:id',getOne)
+
+router.get('/:id',passport.authenticate('jwt',{session:false}),getOne)
 
 export default router

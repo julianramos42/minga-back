@@ -12,7 +12,7 @@ const {create} = create_chapter
 const {get_chapter} = getChapter
 let router = express.Router();
 
-router.get('/', get_chapter);
+router.get('/',passport.authenticate('jwt',{session:false}), get_chapter);
 
 router.post('/', passport.authenticate('jwt',{session:false}),validator(chapterSchemas),existsOrder,nextOrder,addFrontPhoto,create)
 
