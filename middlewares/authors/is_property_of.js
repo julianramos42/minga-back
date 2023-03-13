@@ -1,4 +1,4 @@
-import Manga from '../../models/Manga.js'
+import {Manga} from '../../models/Manga.js'
 
 async function is_property_of(req,res,next){
     const manga = await Manga.findOne({  author_id: req.body.author_id, manga_id: req.body.manga_id })
