@@ -1,9 +1,11 @@
-import Chapters from '../../models/Chapther.js'
+import { Chapter } from "../../models/Chapter.js";
 
 const controller = {
   get_one: async (req, res) => {
     try {
-      const one = await Chapters.findOne({ _id: req.params.id }).select('pages _id').sort({pageNumber: 1, });
+      const one = await Chapter.findOne({ _id: req.params.id })
+        .select("-_id -updatedAt -createdAt -__v")
+        .sort({ pageNumber: 1 });
       if (one) {
         return res.status(200).json({ Chapter: one });
       } else {
