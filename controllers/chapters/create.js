@@ -1,4 +1,4 @@
-import Chapther from "../../models/Chapther.js"
+import {Chapter} from "../../models/Chapter.js"
 
 const controller = {
     create: async (req, res) => {
@@ -6,7 +6,7 @@ const controller = {
 
                 req.body.order = Number(req.body.order)
        
-            let chapther = await Chapther.create(req.body)
+            let chapter = await Chapter.create(req.body)
             return res.status(201).json({
                 success: true,
                 order: req.body.order
@@ -16,7 +16,7 @@ const controller = {
             console.log(error)
             return res.status(400).json({
                 success: false,
-                message: 'chapther cannot by create',
+                message: 'chapter cannot by create',
 
             })
         }
