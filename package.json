@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "data_categories": "node ./models/data/categories"
+    "data": "node ./models/data/data",
+    "test": "mocha --timeout 5000"
   },
   "type": "module",
   "dependencies": {
@@ -27,6 +28,9 @@
     "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
   }
 }
