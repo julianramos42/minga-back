@@ -27,7 +27,7 @@ router.post(
 );
 
 router.get('/', passport.authenticate('jwt', {session:false}), read)
-router.get('/:id',getOne)
+router.get('/:id',passport.authenticate('jwt', {session:false}),getOne)
 router.get('/authors/:author_id', passport.authenticate('jwt', {session:false}), read_mangas_from_author)
 
 export default router
