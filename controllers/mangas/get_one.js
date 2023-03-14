@@ -5,7 +5,6 @@ import  {Manga}  from '../../models/Manga.js'
 const controller = {
 
     getOne: async (req, res) => {
-console.log(req.params)
         const manga = await Manga.findOne({ _id: req.params.id })
             .select("title cover_photo description author_id category_id _id")
             .populate('category_id', "name -_id")
