@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import {Manga} from '../../models/Manga.js'
-=======
-import { Manga } from '../../models/Manga.js'
->>>>>>> 2c2fe201bdcc46ed2828cc39c7d9ffe2a89228f9
 
 const controller = {
     read: async (req, res) => {
