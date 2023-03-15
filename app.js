@@ -4,11 +4,11 @@ import './config/database.js' //requiero la configuracion de la db
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-import indexRouter from './routes/index.js'
 import { __dirname } from './utils.js'
+import indexRouter from './routes/index.js'
 import cors from 'cors'
 
-const app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +21,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
+
+// function errorNotFound(req, res, next){
+//     next(createError(404, 'La ruta no existe'))
+//   }
+// app.use(errorNotFound)
 
 export default app
