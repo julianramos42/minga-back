@@ -16,10 +16,15 @@ const controller = {
         }
         try {
             let chapter = await Chapter.find(chapters)
-            .select('title order cover_photo -_id')
+            .select('title order  -_id')
+            .populate({
+                path: 'manga_id',
+                select: 'cover_photo -_id'
+            })
             .sort({order:1})
             .skip(pagination.page > 0 ? (pagination.page - 1) * pagination.limit : 0)
             .limit(pagination.limit > 0 ? pagination.limit : 0)
+
             return res.status(200).json({chapter})
         }catch (error){
             next (error)

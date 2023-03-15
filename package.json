@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "data": "node ./models/data/data",
-    "test": "mocha --timeout 5000"
+    "test": "mocha --timeout 5000",
+    "test-chapter": "mocha ./test/chapter.test.js"
   },
   "type": "module",
   "dependencies": {

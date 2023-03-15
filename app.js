@@ -23,7 +23,6 @@ app.use(cors())
 
 app.use('/api', indexRouter);
 
-
 // function errorNotFound(req, res, next){
 //     next(createError(404, 'La ruta no existe'))
 //   }
