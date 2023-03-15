@@ -9,15 +9,12 @@ import passport from '../middlewares/chapters/passport.js'
 import getChapter from '../controllers/chapters/get_chapters.js'
 import chapterController from '../controllers/chapters/get_one.js'
 
-
-const { get_one } = chapterController
-
-
-router.get("/:id", get_one);
-
+let router = express.Router();
 const {create} = create_chapter
 const {get_chapter} = getChapter
-let router = express.Router();
+const { get_one } = chapterController
+
+router.get("/:id", get_one);
 
 router.get('/',passport.authenticate('jwt',{session:false}), get_chapter);
 
