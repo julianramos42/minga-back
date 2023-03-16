@@ -16,6 +16,7 @@ const schema = Joi.object({
       }),
     cover_photo: Joi
         .string()
+        .uri()
         .required(),
     description: Joi
         .string()

@@ -29,7 +29,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), read)
 router.get('/me', passport.authenticate('jwt', { session: false }), finds_id, read_me)
 router.get('/:id', passport.authenticate('jwt', { session: false }), getOne)
 router.get('/authors/:author_id', passport.authenticate('jwt', { session: false }), read_mangas_from_author)
-router.put('/:id', passport.authenticate('jwt', { session: false }), finds_id, is_active, is_property_of, validator(updateMangaSchema), update)
+router.put('/:id', passport.authenticate('jwt', { session: false }), validator(updateMangaSchema),finds_id, is_active, is_property_of, update)
 router.delete('/:id', passport.authenticate('jwt', { session: false }), finds_id, is_active, is_property_of, destroy)
 
 export default router

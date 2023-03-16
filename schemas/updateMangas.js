@@ -10,7 +10,8 @@ const schema = Joi.object({
             "string.max": "The title must have a maximum of 30 characters",
       }),
     cover_photo: Joi
-        .string(),
+        .string()
+        .uri(),
     description: Joi
         .string()
         .min(20)
@@ -21,9 +22,6 @@ const schema = Joi.object({
       }),
     category_id: Joi
         .objectId(),
-    author_id: Joi
-        .objectId()
-        .required(),
 })
 
 export default schema
