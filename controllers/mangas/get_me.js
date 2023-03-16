@@ -29,11 +29,12 @@ const controller = {
             query.author_id = req.body.author_id
 
             let mangas = await Manga.find(query)
-                .select("title category_id cover_photo _id")
+                .select("title category_id author_id cover_photo _id")
                 .sort(order)
                 .skip(skip)
                 .limit(pagination.limit > 0 ? pagination.limit : 0)
                 .populate("category_id", "name -_id")
+                .populate("author_id", "name last_name -_id")
                 
             if(mangas){
                 return res.status(200).json({
