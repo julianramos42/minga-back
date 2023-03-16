@@ -1,4 +1,5 @@
 import { Manga } from "../../models/Manga.js";
+import { Chapter } from '../../models/Chapter.js'
 
 const controller = {
     destroy: async (req,res) => {
@@ -7,6 +8,10 @@ const controller = {
                 { _id: req.params.id }
             )
             if(manga){
+                await Chapter.deleteMany(
+                    {manga_id: req.params.id}
+                )
+
                 return res.status(200).json({
                     success: true,
                     message: "Manga successfully deleted",
