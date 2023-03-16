@@ -14,7 +14,7 @@ const schema = Joi.object({
     description: Joi
         .string()
         .min(20)
-        .max(200)
+        .max(2000)
         .messages({
             "string.min": "The description must have at least 20 characters",
             "string.max": "The description must have a maximum of 200 characters",
