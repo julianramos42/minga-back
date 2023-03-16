@@ -3,15 +3,22 @@ import { Manga } from "../../models/Manga.js";
 const controller = {
     update: async (req,res) => {
         try{
-            let mangas = await Manga.findOneAndUpdate(
+            let manga = await Manga.findOneAndUpdate(
                 {_id: req.params.id},
                 req.body,
                 {new: true}
             )
-            return res.status(200).json({
-                success: true,
-                mangas
-            })
+            if(manga){
+                return res.status(200).json({
+                    success: true,
+                    manga
+                })
+            }else{
+                return res.status(404).json({
+                    success: false,
+                    message: "Manga not found"
+                })
+            }
         }catch(error){
             return res.status(400).json({
                 success: false,
