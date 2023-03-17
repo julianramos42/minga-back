@@ -1,7 +1,7 @@
 import { Manga } from "../../models/Manga.js";
 
 const controller = {
-    update: async (req,res) => {
+    update: async (req,res,next) => {
         try{
             let manga = await Manga.findOneAndUpdate(
                 {_id: req.params.id},
@@ -20,9 +20,7 @@ const controller = {
                 })
             }
         }catch(error){
-            return res.status(400).json({
-                success: false,
-            })
+            next(error)
         }
     }
 }

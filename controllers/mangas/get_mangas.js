@@ -1,7 +1,7 @@
 import {Manga} from '../../models/Manga.js'
 
 const controller = {
-    read: async (req, res) => {
+    read: async (req, res, next) => {
         try {
             let order = { title: 1 }
             if (req.query.order == 1 || req.query.order == -1) {
@@ -50,12 +50,7 @@ const controller = {
             }
 
         } catch (error) {
-            return res
-                .status(400)
-                .json({
-                    success: false,
-                    error
-                })
+            next(error)
         }
     }
 }

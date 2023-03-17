@@ -1,7 +1,7 @@
 import {Manga} from '../../models/Manga.js'
 
 const controller = {
-    create : async (req, res) => { 
+    create : async (req, res, next) => { 
         try {
           
           let manga = await Manga.create(req.body);
@@ -11,11 +11,7 @@ const controller = {
     
           });
         } catch (err) {
-          console.log(err);
-          return res.status(400).json({
-            success: false,
-            message: "Cannot create a new Manga",
-          });
+          next(err)
         }
       } 
 }
