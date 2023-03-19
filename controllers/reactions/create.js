@@ -8,13 +8,17 @@ const controller = {
             let reaction = await Reaction.find(req.body)
             if(reaction.length){
                 await Reaction.findOneAndDelete(req.body)
+                return res.status(200).json({
+                    success: true,
+                    message: "Reaction deleted"
+                })
             }else{
                 await Reaction.create(req.body)
+                return res.status(200).json({
+                    success: true,
+                    message: "Reaction added"
+                })
             }
-            return res.status(200).json({
-                success: true,
-                message: "Reaction complete"
-            })
         } catch (error) {
             next(error)
         }
