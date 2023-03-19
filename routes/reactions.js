@@ -10,7 +10,7 @@ let router = express.Router()
 const {create} = createReaction
 const {read} = readReaction
 
-router.get('/', read)
 router.post('/', passport.authenticate('jwt',{session:false}), validator(reactionSchema), create)
+router.get('/', read)
 
 export default router
