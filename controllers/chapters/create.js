@@ -9,7 +9,9 @@ const controller = {
             let chapter = await Chapter.create(req.body)
             return res.status(201).json({
                 success: true,
-                order: req.body.order
+                order: req.body.order,
+                pages: req.body.pages,
+                chapter
 
             })
         } catch (error) {

@@ -16,7 +16,7 @@ const controller = {
         }
         try {
             let chapter = await Chapter.find(chapters)
-            .select('title order  -_id')
+            .select('title order  _id')
             .populate({
                 path: 'manga_id',
                 select: 'cover_photo -_id'
