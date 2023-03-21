@@ -10,7 +10,10 @@ const controller = {
                 { new: true },
             )
                 .select('text')
-            return res.status(200).json(upd)
+            return res.status(200).json({
+                success: true,
+                upd
+            })
         } catch (error) {
             next(error)
         }
