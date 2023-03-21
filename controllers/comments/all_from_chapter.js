@@ -20,7 +20,7 @@ const controller = {
                 .sort({createdAt: 1})
                 .skip(skip)
                 .limit(pagination.limit > 0 ? pagination.limit : 0)
-                .populate('user_id', '_id')
+                .populate('user_id', '_id name photo')
 
             return res.status(201).json({
                 success: true,
