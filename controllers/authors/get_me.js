@@ -1,5 +1,5 @@
 import {Author} from '../../models/Author.js'
-
+import createError from "http-errors";
  const controller = {
     me: async(req,res,next) => {
 
@@ -11,15 +11,9 @@ import {Author} from '../../models/Author.js'
                     author
                 })
             }
-            return res.status(404).json({
-                success: false,
-                message: "No authors found"
-            })
+            return next(createError(404, "No author found"));
         }catch(error){
-            return res.status(400).json({
-                success: false,
-                message: "Unexpected error 000"
-            })
+            return next(createError(400, error));
         }
     }
 }
