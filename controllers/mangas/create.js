@@ -8,7 +8,7 @@ const controller = {
           return res.status(201).json({
             success: true,
             message: "A new manga has been created",
-    
+            manga,
           });
         } catch (err) {
           next(err)
