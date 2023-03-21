@@ -2,7 +2,7 @@ import {Author} from '../../models/Author.js'
 import { Manga } from "../../models/Manga.js";
 
 const controller = {
-    read_mangas_from_author: async (req,res) => {
+    read_mangas_from_author: async (req,res,next) => {
         try{
             const query = {
                 new: "true"
@@ -38,12 +38,7 @@ const controller = {
                 message: "No authors found"
             })
         }catch(error){
-            return res
-                .status(400)
-                .json({
-                    success: false,
-                    message: "Unexpected error"
-                })
+            next(error)
         }
     }
 }

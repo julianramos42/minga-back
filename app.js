@@ -7,6 +7,7 @@ import logger from 'morgan'
 import { __dirname } from './utils.js'
 import indexRouter from './routes/index.js'
 import cors from 'cors'
+import { errorHandler, errorNotFound } from './middlewares/error.js'
 
 let app = express();
 
@@ -23,9 +24,7 @@ app.use(cors())
 
 app.use('/api', indexRouter);
 
-// function errorNotFound(req, res, next){
-//     next(createError(404, 'La ruta no existe'))
-//   }
-// app.use(errorNotFound)
+app.use(errorNotFound)
+app.use(errorHandler)
 
 export default app
