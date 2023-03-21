@@ -5,7 +5,7 @@ const controller = {
         try {
             req.body.user_id = req.user.id
             await Comment.create(req.body)
-            return res.status(201).json({
+            return res.status(200).json({
                 success: true,
                 message: "Comment created",
                 data: req.body

@@ -10,10 +10,17 @@ const controller = {
                 { new: true },
             )
                 .select('text')
-            return res.status(200).json({
-                success: true,
-                upd
-            })
+            if (upd) {
+                return res.status(200).json({
+                    success: true,
+                    upd
+                })
+            } else {
+                return res.status(404).json({
+                    success: false,
+                    message: "Comment not found"
+                });
+            }
         } catch (error) {
             next(error)
         }

@@ -4,12 +4,18 @@ const controller = {
     destroy: async (req, res, next) => {
         try {
             let { id } = req.params
-            await Comment.deleteOne(
+            let comment = await Comment.deleteOne(
                 { _id: id }
             )
-            return res.status(200).json({
-                message: 'Comment deleted'
-            })
+            if(comment){
+                return res.status(200).json({
+                    message: 'Comment deleted'
+                })
+            }else{
+                return res.status(404).json({
+                    message: 'Comment not found'
+                })
+            }
         } catch (error) {
             next(error)
         }

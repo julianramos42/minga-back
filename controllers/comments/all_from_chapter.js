@@ -22,10 +22,17 @@ const controller = {
                 .limit(pagination.limit > 0 ? pagination.limit : 0)
                 .populate('user_id', '_id name photo')
 
-            return res.status(201).json({
-                success: true,
-                comments
-            });
+            if(comments){
+                return res.status(200).json({
+                    success: true,
+                    comments
+                });
+            }else{
+                return res.status(404).json({
+                    success: false,
+                    message: "Comment not found"
+                });
+            }
         } catch (err) {
             next(err)
         }
