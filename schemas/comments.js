@@ -12,6 +12,7 @@ const schema = Joi.object({
         .messages({
             "string.min": "The comment must have at least 3 characters",
             "string.max": "The comment must have a maximum of 200 characters",
+            'string.empty': 'The comment cannot be empty',
       }),
     commentable_id: Joi
         .objectId(),

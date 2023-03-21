@@ -8,9 +8,10 @@ const controller = {
                 query.chapter_id = req.query.chapter_id
             }
 
-            let pagination = { page: 1, limit: 4 }
+            let pagination = { page: 1 }
             if (req.query.page) {
                 pagination.page = Number(req.query.page)
+                pagination.limit = 4
             }
 
             let skip = pagination.page > 1 ? (pagination.page - 1) * pagination.limit : 0
@@ -19,6 +20,7 @@ const controller = {
                 .sort({createdAt: 1})
                 .skip(skip)
                 .limit(pagination.limit > 0 ? pagination.limit : 0)
+                .populate('user_id', '_id')
 
             return res.status(201).json({
                 success: true,
