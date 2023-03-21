@@ -23,6 +23,9 @@ const schema = Joi.object({
     manga_id: Joi
         .string()
         .required(),
+    cover_photo: Joi
+        .string()
+        .required()
 
 })
 

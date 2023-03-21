@@ -18,7 +18,7 @@ async function chapter_is_property_of(req, res, next) {
             }
             return res.status(404).json({
                 succes: false,
-                message: "Manga not found",
+                message: "Manga is not property of the author",
             });
         } else {
             return res.status(404).json({

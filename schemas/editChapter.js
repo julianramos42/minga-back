@@ -13,14 +13,9 @@ const schema = Joi.object({
     pages: Joi
         .array().items(Joi.string().uri()),
     cover_photo: Joi
-    .string().uri()
-    .message({
-        'string': 'the pages have to be url',
-    }),
-    data_to_edit: Joi
-        .any()
-        .messages({
-            'any.required': 'the data to edit cannot be empty',
+        .string().uri()
+        .message({
+            'string': 'the cover_photo have to be url',
         }),
 })
 
