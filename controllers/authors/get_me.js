@@ -2,7 +2,7 @@ import {Author} from '../../models/Author.js'
 
  const controller = {
     me: async(req,res,next) => {
-        console.log("hola");
+
         try{
             let author = await Author.findOne({user_id: req.user})
             if(author){

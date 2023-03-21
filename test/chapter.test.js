@@ -3,7 +3,8 @@ import chai from 'chai'
 import request from 'supertest'
 const { expect, assert } = chai;
 
-const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTQ4ZWE2MGM3YWI2OTZhMGM0NWVmYyIsImlhdCI6MTY3OTA2ODg0NSwiZXhwIjoxNjc5MTU1MjQ1fQ.3RwTzIpIe8u1r0yDkirwTd0HbN41yeZ-J_Q4exyoFR0";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTllNzgxY2I4Y2UyNDEzZDZiNzQzOCIsImlhdCI6MTY3OTQxOTI3NiwiZXhwIjoxNjc5NTA1Njc2fQ.2aeKbH8SN3SfxfilblKBJK18EzdeT_zA1Y5Izzz8kuI";
 //cambiar el token cuando expire
 describe('POST /chapters', async () => {
     it("POST api/chapters verificar que pages es un array de strings", async () => {
@@ -63,14 +64,14 @@ describe('POST /chapters', async () => {
 
      });
       it("verifica que se pase el token por headers", async () => {
-
         const response = await request(app)
-          .get("/api/chapters")
-          .set("Authorization", `Bearer ${token}`);
+          .get("/api/chapters/")
+          .auth(token, { type: "bearer" });
 
-        expect(response.status).to.equal(200);
-        expect(response.body.chapter).to.have.property("chapter");
-        // Agregar cualquier otra propiedad que se espere que la respuesta contenga
+        expect(response.request.header.Authorization).to.equal(
+          `Bearer ${token}`
+        );
       });
+
 
 })

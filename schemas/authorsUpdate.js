@@ -1,13 +1,14 @@
 import Joi from "joi-oid";
 
 const schema = Joi.object({
-  name: Joi.string().required().min(5).messages({
-    "string.min": "The name must be at least 5 characters",
+  name: Joi.string().min(2).max(30).messages({
+    "string.min": "The name must be at least 2 characters",
+    "string.max": "The title must be 30 characters long max",
     "string.empty": "The name cannot be empty",
     "any.required": "A name is required",
   }),
-  last_name: Joi.string().min(6).max(25).messages({
-    "string.min": "The last name must be at least 6 characters",
+  last_name: Joi.string().min(2).max(25).messages({
+    "string.min": "The last name must be at least 2 characters",
     "string.max": "The last name cannot exceed 25 characters",
     "string.empty": "The last name cannot be empty",
     "any.required": "A last name is required",
@@ -22,15 +23,18 @@ const schema = Joi.object({
     "string.empty": "The country cannot be empty",
     "any.required": "A country is required",
   }),
-  date: Joi.date().messages({
-    "date.base": "Date must be a type of 'date'",
-  }),
-  photo: Joi.string().min(8).uri().messages({
-    "string.min": "The photo must be at least 8 characters",
+  date: Joi.date().raw(),
+  photo: Joi.string().uri().messages({
     "string.empty": "The photo cannot be empty",
     "any.required": "A photo is required",
     "string.uri": "A valid URL is necessary",
   }),
+   user_id: Joi
+        .objectId()
+        .messages({
+            'invalid': 'user_id is not an objectId'
+        }),
+        active:Joi.boolean()
 });
 
 export default schema;
