@@ -8,8 +8,8 @@
     "data": "node ./models/data/data",
     "test": "mocha --timeout 5000",
     "test-chapter": "mocha ./test/chapter.test.js",
-    "t-02": "mocha ./test/T-02.test.js --timeout 10000",
-    "test-01": "mocha ./test/T-01.test.js"
+    "test-01": "mocha ./test/T-01.test.js",
+    "t-02": "mocha ./test/T-02.test.js --timeout 10000"
   },
   "type": "module",
   "dependencies": {

@@ -1,4 +1,4 @@
-import Joi from "joi"
+import Joi from 'joi-oid';
 
 const schema = Joi.object({
     title: Joi
@@ -21,7 +21,7 @@ const schema = Joi.object({
             'string.empty': 'the pages cannot be empty'
         }),
     manga_id: Joi
-        .string()
+        .objectId()
         .required(),
     cover_photo: Joi
         .string()
