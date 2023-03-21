@@ -1,7 +1,7 @@
 import {Chapter} from "../../models/Chapter.js"
 
 const controller = {
-    create: async (req, res) => {
+    create: async (req, res, next) => {
         try {
 
                 req.body.order = Number(req.body.order)
@@ -13,12 +13,7 @@ const controller = {
 
             })
         } catch (error) {
-            console.log(error)
-            return res.status(400).json({
-                success: false,
-                message: 'chapter cannot by create',
-
-            })
+            next(error)
         }
 
     }
