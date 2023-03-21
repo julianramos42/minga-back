@@ -21,8 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-app.use(errorNotFound);
-app.use(errorHandler);
+// app.use(errorNotFound);
+// app.use(errorHandler);
 app.use('/api', indexRouter);
 
 // function errorNotFound(req, res, next){
