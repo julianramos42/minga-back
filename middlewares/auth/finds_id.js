@@ -6,12 +6,10 @@ async function finds_id(req, res, next) {
         return next()
     }
 
-
     return res.status(400).json({
         success: false,
         message: 'No authors founded'
     })
-
 }
 
 export default finds_id
