@@ -6,7 +6,7 @@ const controller = {
         let chapters = {} 
         let pagination = { //configuracion de la pagina 
             page: 1,
-            limit: 4,
+            limit:4,
         }
         if (req.query.manga_id) {
             chapters.manga_id = req.query.manga_id
