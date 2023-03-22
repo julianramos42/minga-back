@@ -4,7 +4,7 @@ import request from 'supertest'
 const { expect, assert } = chai;
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTllNzgxY2I4Y2UyNDEzZDZiNzQzOCIsImlhdCI6MTY3OTQxOTI3NiwiZXhwIjoxNjc5NTA1Njc2fQ.2aeKbH8SN3SfxfilblKBJK18EzdeT_zA1Y5Izzz8kuI";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWIxNTgxZThkMWY2ZjI5ZTBjMzJmZCIsImlhdCI6MTY3OTQ5NjU4NCwiZXhwIjoxNjc5NTgyOTg0fQ.nfSSLAPFqMQtngzwL5bbobzuwUUf9C_o0XaFMOoYV-A";
 //cambiar el token cuando expire
 describe('POST /chapters', async () => {
     it("POST api/chapters verificar que pages es un array de strings", async () => {

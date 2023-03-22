@@ -1,6 +1,6 @@
 import { Author } from "../../models/Author.js";
 import createError from 'http-errors';
-// import createError(404, ) 
+
 
 const controller = {
   update: async (req, res, next) => {
