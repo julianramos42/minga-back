@@ -6,7 +6,7 @@ const controller = {
         let chapters = {} 
         let pagination = { //configuracion de la pagina 
             page: 1,
-            limit: 4,
+            limit:4,
         }
         if (req.query.manga_id) {
             chapters.manga_id = req.query.manga_id
@@ -16,7 +16,7 @@ const controller = {
         }
         try {
             let chapter = await Chapter.find(chapters)
-            .select('title order  _id')
+            .select('title order cover_photo _id')
             .populate({
                 path: 'manga_id',
                 select: 'cover_photo -_id'

@@ -1,13 +1,8 @@
 import Joi from 'joi-oid';
 
 const schema = Joi.object({
-    company_id: Joi
-        .objectId(),
-    author_id: Joi
-        .objectId(),
     title: Joi
         .string()
-        .required()
         .min(3)
         .max(30)
         .messages({
@@ -16,11 +11,9 @@ const schema = Joi.object({
       }),
     cover_photo: Joi
         .string()
-        .uri()
-        .required(),
+        .uri(),
     description: Joi
         .string()
-        .required()
         .min(20)
         .max(2000)
         .messages({
@@ -28,10 +21,7 @@ const schema = Joi.object({
             "string.max": "The description must have a maximum of 200 characters",
       }),
     category_id: Joi
-        .objectId()
-        .required(),
-
-
+        .objectId(),
 })
 
 export default schema
