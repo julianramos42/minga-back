@@ -6,13 +6,13 @@ const controller = {
         let chapters = {} 
         let pagination = { //configuracion de la pagina 
             page: 1,
+            limit: 4,
         }
         if (req.query.manga_id) {
             chapters.manga_id = req.query.manga_id
         }
         if (req.query.page) {
             pagination.page = req.query.page
-            pagination.limit = 4
         }
         try {
             let chapter = await Chapter.find(chapters)
