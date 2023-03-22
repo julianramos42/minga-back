@@ -1,7 +1,7 @@
-import {Author} from "../../models/Author.js"
-async function finds_id(req,res,next){
-    const author = await Author.findOne({user_id: req.user.id})
-    if(author){
+import { Author } from "../../models/Author.js"
+async function finds_id(req, res, next) {
+    const author = await Author.findOne({ user_id: req.user.id })
+    if (author) {
         req.body.author_id = author._id
         return next()
     }

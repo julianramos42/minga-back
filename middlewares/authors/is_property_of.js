@@ -1,4 +1,4 @@
-import {Manga} from '../../models/Manga.js'
+import { Manga } from '../../models/Manga.js'
 
 async function is_property_of(req,res,next){
     const manga = await Manga.findOne({  author_id: req.body.author_id, _id: req.params.id })
@@ -10,5 +10,4 @@ async function is_property_of(req,res,next){
         message: 'No matches found'
     })
 }
-
 export default is_property_of
