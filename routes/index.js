@@ -6,6 +6,7 @@ import authorRouter from './authors.js'
 import categoriesRouter from './categories.js'
 import commentsRouter from './comments.js'
 import reactionsRouter from './reactions.js'
+import donationsRouter from './donations.js'
 
 let router = express.Router();
 
@@ -21,5 +22,6 @@ router.use('/authors',authorRouter)
 router.use('/categories',categoriesRouter)
 router.use('/comments',commentsRouter)
 router.use('/reactions', reactionsRouter)
+router.use('/donate',donationsRouter)
 
 export default router
