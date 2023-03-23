@@ -10,7 +10,7 @@ import read_allController from '../controllers/authors/read_all.js'
 import is_active from "../middlewares/authors/is_active.js";
 import updateController from '../controllers/authors/update.js'
 import schemaUpdate from '../schemas/authorsUpdate.js';
-
+import alreadyExists from '../middlewares/authors/alreadyExists.js';
 
 const { me } = meController;
 const {create} = controller
@@ -22,7 +22,7 @@ const { update } = updateController
 let router = express.Router();
 
 router.get('/:id', passport.authenticate("jwt", { session:false }), read_one)
-router.post('/', passport.authenticate("jwt", { session:false }), validator(schemaAuthors), create)
+router.post('/', passport.authenticate("jwt", { session:false }), validator(schemaAuthors), alreadyExists, create)
 router.get("/authors_me/me", passport.authenticate("jwt", { session:false }), finds_id, me );
 router.put("/authors_me/me", passport.authenticate("jwt", { session:false }),validator(schemaUpdate), finds_id,is_active, update )
 router.get('/', read_all )
