@@ -6,7 +6,11 @@ import createError from "http-errors";
 const controller = {
     update_active: async (req, res, next) => {
         try {
-            let author = await Author.findOneAndUpdate({ _id: req.params.id }, { active: req.body.active }, { new: true })
+            let author = await Author.findOneAndUpdate(
+                { _id: req.params.id },
+                { active: req.body.active },
+                { new: true }
+                )
             return res.status(200).json({
                 success: true,
                 author,
