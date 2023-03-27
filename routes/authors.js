@@ -12,6 +12,7 @@ import updateController from '../controllers/authors/update.js'
 import schemaUpdate from '../schemas/authorsUpdate.js';
 import readActive from '../controllers/authors/read_all_active.js'
 import updateActive from '../controllers/authors/update_active.js'
+
 const { me } = meController;
 const { create } = controller
 const { read_one } = readController
@@ -29,5 +30,5 @@ router.put("/authors_me/me", passport.authenticate("jwt", { session: false }), v
 router.get('/', read_all)
 
 router.get('/admin/prueba', read_all_active)
-router.put('/admin/prueba/:id', update_active)
+router.put('/admin/prueba/:id',  update_active)
 export default router

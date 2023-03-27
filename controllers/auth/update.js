@@ -16,8 +16,6 @@ const controller = {
                     user,
                 })
             }
-            console.log(user,'hola')
-
         } catch (error) {
             next(error)
         }
