@@ -2,6 +2,17 @@ import { User } from "../../models/User.js"
 import crypto from 'crypto'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 const controller = {
     sign_up: async (req, res, next) => {
@@ -9,11 +20,28 @@ const controller = {
         req.body.is_admin = false
         req.body.is_author = false
         req.body.is_company = false
-        req.body.is_verified = true
+        req.body.is_verified = false
         req.body.verify_code = crypto.randomBytes(10).toString('hex')
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
         try {
             await User.create(req.body)
+
+            const message = {
+              from: process.env.SMTP_USER,
+              to: req.body.mail,
+              subject: "Verifica tu cuenta",
+              text: `Por favor, haz clic en el siguiente enlace para verificar tu cuenta: http://localhost:8080/api/auth/verify/${req.body.verify_code}`,
+            };
+            transporter.sendMail(message, (error, info) => {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log(
+                  "Correo electrónico de verificación enviado: " + info.response
+                );
+              }
+            });
+
             return res.status(200).json({
                 success: true,
                 message: 'User registered',
