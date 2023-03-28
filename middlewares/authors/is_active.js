@@ -12,9 +12,9 @@ async function is_active(req, res, next) {
             })
         }
     } else {
-        return res.status(400).json({
+        return res.status(404).json({
             success: false,
-            message: 'No authors founded'
+            message: 'Author not found'
         })
     }
 }
