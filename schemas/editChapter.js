@@ -3,9 +3,9 @@ import Joi from "joi"
 const schema = Joi.object({
     title: Joi
         .string()
-        .min(4)
+        .min(1)
         .messages({
-            'string.min': 'the title must be at least 4 characteres',
+            'string.min': 'the title must be at least 1 characteres',
             'string.empty': 'the title cannot be empty',
         }),
     order: Joi
