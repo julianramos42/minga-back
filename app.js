@@ -8,6 +8,8 @@ import { __dirname } from './utils.js'
 import indexRouter from './routes/index.js'
 import cors from 'cors'
 import { errorHandler, errorNotFound } from './middlewares/error.js'
+import morgan from 'morgan'
+import bodyParser from "body-parser";
 
 let app = express();
 
@@ -21,8 +23,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-// app.use(errorNotFound);
-// app.use(errorHandler);
+app.use(morgan('dev'))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use('/api', indexRouter);
 
 app.use(errorNotFound)
