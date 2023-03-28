@@ -10,6 +10,7 @@ import accountHasBeenVerified from '../middlewares/accountHasBeenVerified.js'
 import passwordIsOk from '../middlewares/passwordIsOk.js'
 import passport from '../middlewares/passport.js'
 
+
 const { verify } = controllerVerify
 const { sign_up,sign_in,sign_out,token } = controller
 

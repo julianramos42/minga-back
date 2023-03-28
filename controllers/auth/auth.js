@@ -25,12 +25,23 @@ const controller = {
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
         try {
             await User.create(req.body)
-
+ 
+            const frontRoute = process.env.FRONT;
             const message = {
               from: process.env.SMTP_USER,
               to: req.body.mail,
-              subject: "Verifica tu cuenta",
-              text: `Por favor, haz clic en el siguiente enlace para verificar tu cuenta: http://localhost:8080/api/auth/verify/${req.body.verify_code}`,
+              subject: "User Validation",
+              text: "Validate your user by clicking on the following link",
+              html: `<p><br>Welcome to Minga Project<br>
+             <br> Discover a manga, have fun and enjoy <br> 
+             Press the following link to validate your user: <a href="${frontRoute}/${req.body.verify_code}">Click here</a></p> 
+             <p style="color: grey;">--<br>
+             Kind regards,<br>
+             Minga's team<br>
+             <br>
+             Thanks for using our app! If you have any questions or suggestions, please do not hesitate to contact us.<br>
+             <br>
+             Minga Project</p>`,
             };
             transporter.sendMail(message, (error, info) => {
               if (error) {
