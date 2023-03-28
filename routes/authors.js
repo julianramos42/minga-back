@@ -23,12 +23,12 @@ const { update_active } = updateActive
 
 let router = express.Router();
 
-router.get('/:id', passport.authenticate("jwt", { session: false }), read_one)
 router.post('/', passport.authenticate("jwt", { session: false }), validator(schemaAuthors), create)
 router.get("/authors_me/me", passport.authenticate("jwt", { session: false }), finds_id, me);
 router.put("/authors_me/me", passport.authenticate("jwt", { session: false }), validator(schemaUpdate), finds_id, is_active, update)
 router.get('/', read_all)
 
-router.get('/admin/prueba', read_all_active)
-router.put('/admin/prueba/:id',  update_active)
+router.get('/admin', read_all_active)
+router.put('/admin/:id',  update_active)
+router.get('/:id', passport.authenticate("jwt", { session: false }), read_one)
 export default router
