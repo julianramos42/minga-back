@@ -10,6 +10,7 @@ import read_allController from '../controllers/authors/read_all.js'
 import is_active from "../middlewares/authors/is_active.js";
 import updateController from '../controllers/authors/update.js'
 import schemaUpdate from '../schemas/authorsUpdate.js';
+import alreadyExists from '../middlewares/authors/alreadyExists.js';
 import readActive from '../controllers/authors/read_all_active.js'
 import updateActive from '../controllers/authors/update_active.js'
 
@@ -23,10 +24,10 @@ const { update_active } = updateActive
 
 let router = express.Router();
 
-router.post('/', passport.authenticate("jwt", { session: false }), validator(schemaAuthors), create)
-router.get("/authors_me/me", passport.authenticate("jwt", { session: false }), finds_id, me);
-router.put("/authors_me/me", passport.authenticate("jwt", { session: false }), validator(schemaUpdate), finds_id, is_active, update)
-router.get('/', read_all)
+router.post('/', passport.authenticate("jwt", { session:false }), validator(schemaAuthors), alreadyExists, create)
+router.get("/authors_me/me", passport.authenticate("jwt", { session:false }), finds_id, me );
+router.put("/authors_me/me", passport.authenticate("jwt", { session:false }),validator(schemaUpdate), finds_id,is_active, update )
+router.get('/', read_all )
 
 router.get('/admin', read_all_active)
 router.put('/admin/:id',  update_active)
