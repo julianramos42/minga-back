@@ -20,7 +20,7 @@ const controller = {
                 name: req.user.name
             },
             back_urls: {
-                success: "http://localhost:3000/",
+                success: "https://jr-minga-front.vercel.app/",
                 failure: "",
                 pending: "",
             },
