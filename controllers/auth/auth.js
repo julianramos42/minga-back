@@ -26,7 +26,7 @@ const controller = {
         try {
             await User.create(req.body)
  
-            const frontRoute = process.env.FRONT;
+            
             const message = {
               from: process.env.SMTP_USER,
               to: req.body.mail,
@@ -34,7 +34,7 @@ const controller = {
               text: "Validate your user by clicking on the following link",
               html: `<p><br>Welcome to Minga Project<br>
              <br> Discover a manga, have fun and enjoy <br> 
-             Press the following link to validate your user: <a href="${frontRoute}/${req.body.verify_code}">Click here</a></p> 
+             Press the following link to validate your user: <a href="https://jr-minga-front.vercel.app/verify-account/${req.body.verify_code}">Click here</a></p> 
              <p style="color: grey;">--<br>
              Kind regards,<br>
              Minga's team<br>
